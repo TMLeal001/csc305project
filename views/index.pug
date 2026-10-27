@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1 University Database
+
+  form(method='POST', action='/')
+    p
+      label(for='id') ID Number:
+      input#id(type='text', name='id', required)
+
+    p Choose a role:
+
+    p
+      input#student(type='radio', name='role', value='student', required)
+      label(for='student') Student
+
+    p
+      input#faculty(type='radio', name='role', value='faculty')
+      label(for='faculty') Faculty
+
+    p
+      input#registrar(type='radio', name='role', value='registrar')
+      label(for='registrar') Registrar
+
+    button(type='submit') Continue
