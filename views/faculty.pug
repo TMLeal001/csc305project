@@ -5,4 +5,19 @@ block content
 
   p ID Number: #{id}
 
+  h2 Courses Taught
+
+  table
+    tr
+      th Course
+      th Term
+      th Year
+
+    each course in courses
+      tr
+        td= course.CourseNo
+        td= course.OffTerm
+        td= course.OffYear
+
+  br
   a(href='/') Back

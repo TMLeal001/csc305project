@@ -7,6 +7,11 @@
 var app = require('../app');
 var debug = require('debug')('csc305project:server');
 var http = require('http');
+var path = require('path');
+var dbconnect = require('../public/javascripts/dbconnect');
+app.locals.db = dbconnect.openDatabase(
+  path.join(__dirname, '../univdb.sqli')
+);
 
 /**
  * Get port from environment and store in Express.

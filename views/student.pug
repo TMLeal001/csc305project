@@ -5,4 +5,46 @@ block content
 
   p ID Number: #{id}
 
+  h2 Enrolled Courses
+
+  table
+    tr
+      th Course
+      th Term
+      th Year
+      th Instructor
+      th Grade
+
+    each course in courses
+      tr
+        td= course.CourseNo
+        td= course.OffTerm
+        td= course.OffYear
+        td #{course.FacFirstName} #{course.FacLastName}
+        td= course.EnrGrade
+
+  h2 Winter 2026 Courses
+
+  table
+    tr
+      th Course
+      th Instructor
+      th Location
+      th Time
+      th Days
+      th Enrolled
+
+    each course in winterCourses
+      tr
+        td= course.CourseNo
+        td #{course.FacFirstName} #{course.FacLastName}
+        td= course.OffLocation
+        td= course.OffTime
+        td= course.OffDays
+        if course.EnrolledSSN
+          td Yes
+        else
+          td No
+
+  br
   a(href='/') Back

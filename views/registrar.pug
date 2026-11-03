@@ -5,4 +5,25 @@ block content
 
   p ID Number: #{id}
 
+  h2 Winter 2026 Offerings
+
+  table
+    tr
+      th Offering
+      th Course
+      th Instructor
+      th Location
+      th Time
+      th Days
+
+    each offering in offerings
+      tr
+        td= offering.OfferNo
+        td= offering.CourseNo
+        td #{offering.FacFirstName} #{offering.FacLastName}
+        td= offering.OffLocation
+        td= offering.OffTime
+        td= offering.OffDays
+
+  br
   a(href='/') Back
