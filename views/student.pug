@@ -32,7 +32,7 @@ block content
       th Location
       th Time
       th Days
-      th Enrolled
+      th Action
 
     each course in winterCourses
       tr
@@ -41,10 +41,21 @@ block content
         td= course.OffLocation
         td= course.OffTime
         td= course.OffDays
+
         if course.EnrolledSSN
-          td Yes
+          td
+            form(method='POST', action='/student/change')
+              input(type='hidden', name='id', value=id)
+              input(type='hidden', name='offerNo', value=course.OfferNo)
+              input(type='hidden', name='action', value='drop')
+              button(type='submit') Drop
         else
-          td No
+          td
+            form(method='POST', action='/student/change')
+              input(type='hidden', name='id', value=id)
+              input(type='hidden', name='offerNo', value=course.OfferNo)
+              input(type='hidden', name='action', value='enroll')
+              button(type='submit') Enroll
 
   br
   a(href='/') Back
