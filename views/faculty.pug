@@ -12,12 +12,18 @@ block content
       th Course
       th Term
       th Year
+      th Action
 
     each course in courses
       tr
         td= course.CourseNo
         td= course.OffTerm
         td= course.OffYear
+        td
+          form(method='POST', action='/faculty/grades')
+            input(type='hidden', name='id', value=id)
+            input(type='hidden', name='offerNo', value=course.OfferNo)
+            button(type='submit') Edit Grades
 
   br
   a(href='/') Back

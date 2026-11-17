@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  h1 Edit Offering
+
+  p Offering Number: #{offering.OfferNo}
+  p Course: #{offering.CourseNo}
+
+  form(method='POST', action='/registrar/update')
+    p
+      label Instructor:
+      select(name='facSSN')
+        option(value='') None
+        each instructor in faculty
+          if instructor.FacSSN == offering.FacSSN
+            option(value=instructor.FacSSN, selected=true) #{instructor.FacFirstName} #{instructor.FacLastName}
+          else
+            option(value=instructor.FacSSN) #{instructor.FacFirstName} #{instructor.FacLastName}
+
+    p
+      label Location:
+      input(type='text', name='location', value=offering.OffLocation)
+
+    p
+      label Time:
+      input(type='text', name='time', value=offering.OffTime)
+
+    p
+      label Days:
+      input(type='text', name='days', value=offering.OffDays)
+
+    input(type='hidden', name='id', value=id)
+    input(type='hidden', name='offerNo', value=offering.OfferNo)
+
+    button(type='submit') Save Changes
+
+  br
+  a(href='/') Back

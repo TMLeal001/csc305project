@@ -1,0 +1,30 @@
+extends layout
+
+block content
+  h1 Edit Grades
+
+  p Faculty ID: #{id}
+  p Offering Number: #{offerNo}
+
+  table
+    tr
+      th Student
+      th ID
+      th Grade
+      th Update
+
+    each student in students
+      tr
+        td #{student.StdFirstName} #{student.StdLastName}
+        td= student.StdSSN
+        td= student.EnrGrade
+        td
+          form(method='POST', action='/faculty/update-grade')
+            input(type='hidden', name='id', value=id)
+            input(type='hidden', name='offerNo', value=offerNo)
+            input(type='hidden', name='stdSSN', value=student.StdSSN)
+            input(type='text', name='grade', value=student.EnrGrade)
+            button(type='submit') Update Grade
+
+  br
+  a(href='/') Back

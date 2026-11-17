@@ -15,6 +15,7 @@ block content
       th Location
       th Time
       th Days
+      th Action
 
     each offering in offerings
       tr
@@ -24,6 +25,51 @@ block content
         td= offering.OffLocation
         td= offering.OffTime
         td= offering.OffDays
+        td
+          form(method='POST', action='/registrar/edit')
+            input(type='hidden', name='id', value=id)
+            input(type='hidden', name='offerNo', value=offering.OfferNo)
+            button(type='submit') Edit
+
+          form(method='POST', action='/registrar/cancel')
+            input(type='hidden', name='id', value=id)
+            input(type='hidden', name='offerNo', value=offering.OfferNo)
+            button(type='submit') Cancel
+
+  h2 Add New Offering
+
+  form(method='POST', action='/registrar/add')
+    p
+      label Offering Number:
+      input(type='text', name='offerNo')
+
+    p
+      label Course:
+      select(name='courseNo')
+        each course in courses
+          option(value=course.CourseNo) #{course.CourseNo} - #{course.CrsDesc} - #{course.CrsUnits} credits
+
+    p
+      label Instructor:
+      select(name='facSSN')
+        option(value='') None
+        each instructor in faculty
+          option(value=instructor.FacSSN) #{instructor.FacFirstName} #{instructor.FacLastName}
+
+    p
+      label Location:
+      input(type='text', name='location')
+
+    p
+      label Time:
+      input(type='text', name='time')
+
+    p
+      label Days:
+      input(type='text', name='days')
+
+    input(type='hidden', name='id', value=id)
+    button(type='submit') Add Offering
 
   br
   a(href='/') Back
