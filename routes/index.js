@@ -107,7 +107,7 @@ function showRegistrar(req, res, next, id) {
 
         res.render('registrar', {
           id: id,
-          offerings: offerings,
+          rows: offerings,
           courses: courses,
           faculty: faculty
         });
@@ -272,7 +272,8 @@ router.post('/registrar/add', function(req, res, next) {
               OffTerm, OffYear, FacSSN, OffTime)
              values(?, ?, ?, ?, 'WINTER', 2026, ?, ?)`;
 
-  db.run(sql,
+  db.run(
+    sql,
     [offerNo, courseNo, location, days, facSSN, time],
     function(err) {
       if (err) {
@@ -340,7 +341,8 @@ router.post('/registrar/update', function(req, res, next) {
                and OffTerm = 'WINTER'
                and OffYear = 2026`;
 
-  db.run(sql,
+  db.run(
+    sql,
     [facSSN, location, time, days, offerNo],
     function(err) {
       if (err) {
